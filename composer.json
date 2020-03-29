@@ -1,0 +1,38 @@
+{
+    "name": "willy68/pgframework-app",
+    "authors": [
+        {
+            "name": "William Lety",
+            "email": "william.lety@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/willy68/pgframework.git"
+        }
+    ],
+    "require": {
+        "guzzlehttp/psr7": "^1.6",
+        "http-interop/response-sender": "^1.0",
+        "php-di/php-di": "^6.0",
+        "willy68/pgframework": "dev-master",
+        "ext-json": "*",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Application\\Console\\": "bin/src"
+        }
+    },
+    "require-dev": {
+        "middlewares/whoops": "^2.0",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpunit/phpunit": "^8.5",
+        "robmorgan/phinx": "^0.11.4",
+        "fzaninotto/faker": "^1.9",
+        "odan/phinx-migrations-generator": "^4.6",
+        "symfony/console": "^5.0"
+    }
+}
