@@ -1,5 +1,6 @@
 {
     "name": "willy68/pgframework-app",
+    "description": "Application skelto for pgframework",
     "authors": [
         {
             "name": "William Lety",

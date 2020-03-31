@@ -1,35 +1,21 @@
 <?php
 
-namespace App\Bootstrap;
+use Middlewares\Whoops;
 
-use App\Api\ApiModule;
-use App\Demo\DemoModule;
-use App\Admin\AdminModule;
-use App\Api\ApiClientModule;
-use Framework\Middleware\MethodMiddleware;
-use Framework\Middleware\RouterMiddleware;
-use Framework\Middleware\ApiHeadMiddleware;
-use Framework\Middleware\ApiOptionsMiddleware;
-use Framework\Middleware\DispatcherMiddleware;
-use Framework\Middleware\PageNotFoundMiddleware;
-use Framework\Middleware\TrailingSlashMiddleware;
-use Framework\Middleware\MethodNotAllowedMiddleware;
+/* Comment on production */
+putenv("ENV=dev");
+/* Must be an environnement variable */
+putenv('JWT_SECRET=MasuperPhraseSecrete');
 
-return [
-    'modules' => [
-        DemoModule::class,
-        AdminModule::class,
-        ApiModule::class,
-        ApiClientModule::class
-    ],
-    'middlewares' => [
-        TrailingSlashMiddleware::class,
-        MethodMiddleware::class,
-        RouterMiddleware::class,
-        ApiHeadMiddleware::class,
-        ApiOptionsMiddleware::class,
-        MethodNotAllowedMiddleware::class,
-        DispatcherMiddleware::class,
-        PageNotFoundMiddleware::class
-    ]
-];
+$bootstrap = require 'App.php';
+
+$app = (new Framework\App($bootstrap['config']))
+    ->addModules($bootstrap['modules']);
+
+if (getenv('env') === 'dev') {
+    $app->pipe(Whoops::class);
+}
+
+$app->middlewares($bootstrap['middlewares']);
+
+return $app;
