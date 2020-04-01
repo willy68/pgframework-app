@@ -150,7 +150,6 @@ class ApiClientModule extends Module
         })
             // ->middleware(JwtAuthentication::class)
             ->middleware(CorsAllowOriginMiddleware::class)
-            ->middleware(ActiveRecordMiddleware::class)
             ->middleware(ContentTypeJsonMiddleware::class);
     }
 }

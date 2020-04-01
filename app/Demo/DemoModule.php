@@ -6,7 +6,6 @@ use Framework\Module;
 use Framework\Router;
 use Framework\Renderer\RendererInterface;
 use App\Demo\Controller\DemoController;
-use Framework\Middleware\ActiveRecordMiddleware;
 
 class DemoModule extends Module
 {
@@ -15,7 +14,6 @@ class DemoModule extends Module
     {
         $renderer->addPath('demo', __DIR__ . '/views');
 
-        $router->get('/', DemoController::class . '::index', 'demo.index')
-            ->middleware(ActiveRecordMiddleware::class);
+        $router->get('/', DemoController::class . '::index', 'demo.index');
     }
 }

@@ -12,7 +12,6 @@ use App\Api\Cpville\CpvilleController;
 use Tuupola\Middleware\JwtAuthentication;
 use App\Api\Entreprise\EntrepriseController;
 use App\Api\DernierCode\DernierCodeController;
-use Framework\Middleware\ActiveRecordMiddleware;
 use Framework\Middleware\ContentTypeJsonMiddleware;
 use Framework\Middleware\CorsAllowOriginMiddleware;
 
@@ -74,7 +73,6 @@ class ApiModule extends Module
             );
         })
             ->middleware(CorsAllowOriginMiddleware::class)
-            ->middleware(ActiveRecordMiddleware::class)
             ->middleware(ContentTypeJsonMiddleware::class);
 
         // Route with JWT authentication
@@ -209,7 +207,6 @@ class ApiModule extends Module
         })
             // ->middleware(JwtAuthentication::class)
             ->middleware(CorsAllowOriginMiddleware::class)
-            ->middleware(ActiveRecordMiddleware::class)
             ->middleware(ContentTypeJsonMiddleware::class);
     }
 }
