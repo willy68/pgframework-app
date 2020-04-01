@@ -8,7 +8,6 @@ use App\Api\User\UserController;
 use Framework\Router\RouteGroup;
 use App\Api\Controller\ApiController;
 use App\Api\User\Role\RoleController;
-use Psr\Container\ContainerInterface;
 use App\Api\Cpville\CpvilleController;
 use Tuupola\Middleware\JwtAuthentication;
 use App\Api\Entreprise\EntrepriseController;
@@ -27,12 +26,10 @@ class ApiModule extends Module
 
     /**
      * ApiModule constructor.
-     * @param ContainerInterface $c
+     * @param Router $router
      */
-    public function __construct(ContainerInterface $c)
+    public function __construct(Router $router)
     {
-        /** @var Router $router */
-        $router = $c->get(Router::class);
         $router->addRoute('/api', ApiController::class . '::index', 'api.index', ['GET'])
             ->middleware(CorsAllowOriginMiddleware::class)
             ->middleware(ContentTypeJsonMiddleware::class);
