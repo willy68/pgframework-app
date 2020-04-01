@@ -12,7 +12,7 @@ $bootstrap = require 'App.php';
 $app = (new Framework\App($bootstrap['config']))
     ->addModules($bootstrap['modules']);
 
-if (getenv('env') === 'dev') {
+if (getenv('ENV') === 'dev') {
     $app->pipe(Whoops::class);
 }
 
