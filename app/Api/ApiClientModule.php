@@ -9,7 +9,6 @@ use App\Api\Client\ClientController;
 use Tuupola\Middleware\JwtAuthentication;
 use App\Api\Client\Adresse\AdresseController;
 use App\Api\Client\Civilite\CiviliteController;
-use Framework\Middleware\ActiveRecordMiddleware;
 use Framework\Middleware\ContentTypeJsonMiddleware;
 use Framework\Middleware\CorsAllowOriginMiddleware;
 use App\Api\Client\AdresseType\AdresseTypeController;
