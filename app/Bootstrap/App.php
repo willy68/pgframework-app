@@ -3,6 +3,8 @@
 use App\Api\ApiModule;
 use App\Demo\DemoModule;
 use App\Admin\AdminModule;
+use App\Blog\BlogModule;
+use App\Auth\AuthModule;
 use App\Api\ApiClientModule;
 use Framework\Middleware\MethodMiddleware;
 use Framework\Middleware\RouterMiddleware;
@@ -18,8 +20,10 @@ return [
     'modules' => [
         DemoModule::class,
         AdminModule::class,
-        ApiModule::class,
-        ApiClientModule::class
+        BlogModule::class,
+        AuthModule::class
+        //ApiModule::class,
+        //ApiClientModule::class
     ],
 
     /* Base middlewares PageNotFound must be the last.
