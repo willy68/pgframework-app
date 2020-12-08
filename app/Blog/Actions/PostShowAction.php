@@ -6,34 +6,28 @@ use App\Blog\Models\Posts;
 use Framework\Actions\RouterAwareAction;
 use Framework\Renderer\RendererInterface;
 use Framework\Router;
-use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
  * Undocumented class
  */
 class PostShowAction
 {
-    /**
-     *
-     */
     use RouterAwareAction;
 
     /**
-     * Undocumented variable
      *
      * @var RendererInterface
      */
     private $renderer;
 
     /**
-     * Undocumented variable
      *
      * @var \Framework\Router
      */
     private $router;
 
     /**
-     * Undocumented function
+     * Constructeur
      *
      * @param RendererInterface $renderer
      */
@@ -46,12 +40,13 @@ class PostShowAction
     }
 
     /**
-     * $slug et $id directement injecté par \DI\Container
+     * Show blog post
      *
-     * @param Request $request
-     * @return void
+     * @param string $slug
+     * @param int $id
+     * @return string
      */
-    public function __invoke(/*Request $request*/$slug, $id)
+    public function __invoke(string $slug, int $id): string
     {
         //$slug = $request->getAttribute('slug');
         //$post = Posts::find($request->getAttribute('id'), ['include' => ['category']]);
