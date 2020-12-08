@@ -16,7 +16,7 @@ class DemoController
      * $renderer est injecté automatiquement, comme toutes les classes
      * renseignées dans config/config.php
      * Il est possible d'injecter la ServerRequestInterface
-     * mais doit s'appeler Obligatoirement $request.
+     * et les paramètres de la route (ex. $id).
      * Ce type d'injection est possible avec \DI\Container de PHP-DI
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
