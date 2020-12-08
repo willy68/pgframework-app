@@ -46,15 +46,16 @@ class PostShowAction
     }
 
     /**
-     * Undocumented function
+     * $slug et $id directement injecté par \DI\Container
      *
      * @param Request $request
      * @return void
      */
-    public function __invoke(Request $request)
+    public function __invoke(/*Request $request*/$slug, $id)
     {
-        $slug = $request->getAttribute('slug');
-        $post = Posts::find($request->getAttribute('id'), ['include' => ['category']]);
+        //$slug = $request->getAttribute('slug');
+        //$post = Posts::find($request->getAttribute('id'), ['include' => ['category']]);
+        $post = Posts::find($id, ['include' => ['category']]);
 
         if ($post->slug !== $slug) {
             return $this->redirect('blog.show', [
