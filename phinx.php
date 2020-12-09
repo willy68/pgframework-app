@@ -25,7 +25,8 @@ return [
       'host' => $app->getContainer()->get('database.host'),
       'name' => $app->getContainer()->get('database.name'),
       'user' => $app->getContainer()->get('database.user'),
-      'pass' => $app->getContainer()->get('database.password')
+      'pass' => $app->getContainer()->get('database.password'),
+      'charset' => 'utf8'
     ]
   ]
 ];
