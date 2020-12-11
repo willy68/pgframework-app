@@ -5,10 +5,10 @@ namespace App\Auth;
 use App\Auth\User;
 use App\Auth\Table\UserTable;
 use Framework\Auth\User as AuthUser;
-use Framework\Auth\Repository\UserRepository;
+use Framework\Auth\Repository\UserRepositoryInterface;
 use Framework\Database\NoRecordException;
 
-class DatabaseUserRepository implements UserRepository
+class DatabaseUserRepository implements UserRepositoryInterface
 {
 
     private $userTable;

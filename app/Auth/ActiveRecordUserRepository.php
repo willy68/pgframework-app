@@ -4,9 +4,9 @@ namespace App\Auth;
 
 use App\Auth\Models\User;
 use Framework\Auth\User as AuthUser;
-use Framework\Auth\Repository\UserRepository;
+use Framework\Auth\Repository\UserRepositoryInterface;
 
-class ActiveRecordUserRepository implements UserRepository
+class ActiveRecordUserRepository implements UserRepositoryInterface
 {
     /**
      * 

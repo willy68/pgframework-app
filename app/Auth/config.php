@@ -10,9 +10,11 @@ use App\Auth\{
     Twig\AuthTwigExtension,
     Middleware\ForbidenMiddleware
 };
-use Framework\Auth\Repository\UserRepository;
+use Framework\Auth\Repository\UserRepositoryInterface;
 use Framework\Auth\RememberMe\RememberMe;
 use Framework\Auth\RememberMe\RememberMeInterface;
+use Framework\Auth\Service\CookieToken;
+use Framework\Auth\Service\UtilTokenInterface;
 
 use function DI\{
     add,
@@ -30,6 +32,7 @@ return [
         return $auth->getUser();
     })->parameter('auth', get(Auth::class)),
     RememberMeInterface::class => \DI\get(RememberMe::class),
-    UserRepository::class => \DI\get(ActiveRecordUserRepository::class),
+    UtilTokenInterface::class => \DI\get(CookieToken::class),
+    UserRepositoryInterface::class => \DI\get(ActiveRecordUserRepository::class),
     ForbidenMiddleware::class => \DI\autowire()->constructorParameter('loginPath', \DI\get('auth.login'))
 ];

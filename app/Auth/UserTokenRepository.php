@@ -4,9 +4,9 @@ namespace App\Auth;
 
 use App\Auth\Models\UserToken;
 use Framework\Auth\TokenInterface;
-use Framework\Auth\Repository\TokenRepository;
+use Framework\Auth\Repository\TokenRepositoryInterface;
 
-class UserTokenRepository implements TokenRepository
+class UserTokenRepository implements TokenRepositoryInterface
 {
     /**
      * 
