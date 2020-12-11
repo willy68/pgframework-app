@@ -33,4 +33,26 @@ class UserTokenRepository implements TokenRepositoryInterface
         }
         return null;
     }
+
+    public function saveToken(array $token): ?TokenInterface
+    {
+        if (!empty($token)) {
+            return null;
+        }
+        /** @var UserToken */
+        $tokenModel = new $this->model();
+        $tokenModel->create($this->getParams($token));
+        return $tokenModel;
+    }
+
+    protected function getParams(array $params): array
+    {
+        $params = array_filter($params, function ($key) {
+            return in_array($key, ['credential', 'random_password', 'expiration_date', 'is_expired']);
+        }, ARRAY_FILTER_USE_KEY);
+        /*return array_merge($params, [
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);*/
+        return $params;
+    }
 }
