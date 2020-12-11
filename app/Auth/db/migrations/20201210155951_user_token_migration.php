@@ -31,7 +31,7 @@ class UserTokenMigration extends AbstractMigration
      */
     public function change()
     {
-        $this->table('user_token', [
+        $this->table('user_tokens', [
             'id' => false,
             'primary_key' => ['id'],
             'engine' => 'InnoDB',
