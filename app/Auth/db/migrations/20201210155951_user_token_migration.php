@@ -65,7 +65,7 @@ class UserTokenMigration extends AbstractMigration
             'default' => 'CURRENT_TIMESTAMP',
             'after' => 'random_password'
         ])
-        ->addColumn('is_expired', [
+        ->addColumn('is_expired', 'integer', [
             'null' => false,
             'default' => '0',
             'limit' => '10',
