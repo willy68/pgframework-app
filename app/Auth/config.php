@@ -6,11 +6,11 @@ use Framework\{
     Auth\User
 };
 use App\Auth\{
-    ActiveRecordUserProvider,
+    ActiveRecordUserRepository,
     Twig\AuthTwigExtension,
     Middleware\ForbidenMiddleware
 };
-use Framework\Auth\Provider\UserProvider;
+use Framework\Auth\Repository\UserRepository;
 use Framework\Auth\RememberMe\RememberMe;
 use Framework\Auth\RememberMe\RememberMeInterface;
 
@@ -30,6 +30,6 @@ return [
         return $auth->getUser();
     })->parameter('auth', get(Auth::class)),
     RememberMeInterface::class => \DI\get(RememberMe::class),
-    UserProvider::class => \DI\get(ActiveRecordUserProvider::class),
+    UserRepository::class => \DI\get(ActiveRecordUserRepository::class),
     ForbidenMiddleware::class => \DI\autowire()->constructorParameter('loginPath', \DI\get('auth.login'))
 ];

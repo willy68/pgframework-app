@@ -3,10 +3,10 @@
 namespace App\Auth;
 
 use App\Auth\Models\UserToken;
-use Framework\Auth\Provider\TokenProvider;
 use Framework\Auth\TokenInterface;
+use Framework\Auth\Repository\TokenRepository;
 
-class UserTokenProvider implements TokenProvider
+class UserTokenRepository implements TokenRepository
 {
     /**
      * 
