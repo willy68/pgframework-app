@@ -13,7 +13,7 @@ use App\Auth\{
 use Framework\Auth\Repository\UserRepositoryInterface;
 use Framework\Auth\RememberMe\RememberMe;
 use Framework\Auth\RememberMe\RememberMeInterface;
-use Framework\Auth\Service\CookieToken;
+use Framework\Auth\Service\UtilToken;
 use Framework\Auth\Service\UtilTokenInterface;
 
 use function DI\{
@@ -32,7 +32,7 @@ return [
         return $auth->getUser();
     })->parameter('auth', get(Auth::class)),
     RememberMeInterface::class => \DI\get(RememberMe::class),
-    UtilTokenInterface::class => \DI\get(CookieToken::class),
+    UtilTokenInterface::class => \DI\get(UtilToken::class),
     UserRepositoryInterface::class => \DI\get(ActiveRecordUserRepository::class),
     ForbidenMiddleware::class => \DI\autowire()->constructorParameter('loginPath', \DI\get('auth.login'))
 ];
