@@ -18,13 +18,13 @@ class UserTokenRepository implements TokenRepositoryInterface
      * 
      * use user credential (ex. username or email)
      *
-     * @param string $credential
+     * @param mixed $credential
      * @return TokenInterface|null
      */
-    public function getToken(string $credential): ?TokenInterface
+    public function getToken($credential): ?TokenInterface
     {
         try {
-            $token = $this->model::find(['conditions' => ["credential = ?", $credential]]);
+            $token = $this->model::find('last', ['conditions' => ["credential = ?", $credential]]);
         } catch(\Exception $e) {
             return null;
         }
@@ -34,6 +34,12 @@ class UserTokenRepository implements TokenRepositoryInterface
         return null;
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @param array $token
+     * @return \Framework\Auth\TokenInterface|null
+     */
     public function saveToken(array $token): ?TokenInterface
     {
         if (!empty($token)) {
@@ -45,14 +51,41 @@ class UserTokenRepository implements TokenRepositoryInterface
         return $tokenModel;
     }
 
+    /**
+     * Mise à jour du token en database
+     *
+     * @param array $token
+     * @param mixed $id
+     * @return TokenInterface|null
+     */
+    public function updateToken(array $token, $id): ?TokenInterface
+    {
+        try {
+            $userToken = $this->model::find($id);
+        }
+        catch(\ActiveRecord\RecordNotFound $exception) {
+            return null;
+        }
+        /** @var \ActiveRecord\Model $userToken*/
+        $result = $userToken->update_attributes($this->getParams($token));
+        if (!$result) {
+            return null;
+        }
+        return $userToken;
+    }
+
+    /**
+     * Get only the params needed by the array:
+     * ['credential', 'random_password', 'expiration_date', 'is_expired']
+     *
+     * @param array $params
+     * @return array
+     */
     protected function getParams(array $params): array
     {
         $params = array_filter($params, function ($key) {
             return in_array($key, ['credential', 'random_password', 'expiration_date', 'is_expired']);
         }, ARRAY_FILTER_USE_KEY);
-        /*return array_merge($params, [
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);*/
         return $params;
     }
 }
