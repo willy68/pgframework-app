@@ -11,6 +11,10 @@
         {
             "type": "git",
             "url": "https://github.com/willy68/pgframework.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/willy68/pgconsole.git"
         }
     ],
     "require": {
@@ -18,6 +22,7 @@
         "http-interop/response-sender": "^1.0",
         "php-di/php-di": "^6.0",
         "willy68/pgframework": "dev-master",
+        "willy68/pgconsole": "dev-master",
         "ext-json": "*",
         "ext-pdo": "*"
     },
@@ -36,5 +41,8 @@
         "odan/phinx-migrations-generator": "^5.3.1",
         "symfony/console": "^5.0",
         "symfony/var-dumper": "^5.0"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }

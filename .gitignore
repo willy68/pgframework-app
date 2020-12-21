@@ -40,6 +40,8 @@ testem.log
 Thumbs.db
 
 #
+bin/*
+!bin/.gitkeep
 /config/database.php
 database.php
 *~
