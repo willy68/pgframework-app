@@ -1,5 +1,6 @@
 <?php
 
+use App\Middleware\RecordNotFoundMiddleware;
 use Framework\Middleware\ActiveRecordMiddleware;
 
 /**
@@ -7,7 +8,7 @@ use Framework\Middleware\ActiveRecordMiddleware;
  */
 return [
     'router.middlewares' => [
-        ActiveRecordMiddleware::class
-
+        ActiveRecordMiddleware::class,
+        RecordNotFoundMiddleware::class
     ]
 ];
