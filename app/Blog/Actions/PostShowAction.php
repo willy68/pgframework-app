@@ -46,12 +46,11 @@ class PostShowAction
      * @param int $id
      * @return string
      */
-    public function __invoke(string $slug, int $id): string
+    public function __invoke(string $slug, /*int $id*/Posts $post): string
     {
         //$slug = $request->getAttribute('slug');
         //$post = Posts::find($request->getAttribute('id'), ['include' => ['category']]);
-        $post = Posts::find($id, ['include' => ['category']]);
-
+        //$post = Posts::find($id, ['include' => ['category']]);
         if ($post->slug !== $slug) {
             return $this->redirect('blog.show', [
                 'slug' => $post->slug,
