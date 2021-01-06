@@ -43,10 +43,10 @@ class PostShowAction
      * Show blog post
      *
      * @param string $slug
-     * @param int $id
-     * @return string
+     * @param Post $post
+     * @return mixed
      */
-    public function __invoke(string $slug, /*int $id*/Posts $post): string
+    public function __invoke(string $slug, /*int $id*/Posts $post)
     {
         //$slug = $request->getAttribute('slug');
         //$post = Posts::find($request->getAttribute('id'), ['include' => ['category']]);
