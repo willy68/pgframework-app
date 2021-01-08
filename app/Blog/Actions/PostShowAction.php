@@ -85,7 +85,7 @@ class PostShowAction
     /**
      * Show blog post
      * 
-     * @ParameterConverter("category", options={"slug"="slug"})
+     * @ParameterConverter("category", options={"slug"="category_slug"})
      *
      * @param \App\Blog\Models\Categories $category
      * @param \App\Blog\Models\Posts $post
