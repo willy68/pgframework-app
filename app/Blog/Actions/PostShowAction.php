@@ -2,10 +2,12 @@
 
 namespace App\Blog\Actions;
 
+use Framework\Router;
 use App\Blog\Models\Posts;
+use App\Blog\Models\Categories;
 use Framework\Actions\RouterAwareAction;
 use Framework\Renderer\RendererInterface;
-use Framework\Router;
+use Framework\Invoker\Annotation\ParameterConverter;
 
 /**
  * Undocumented class
@@ -58,6 +60,39 @@ class PostShowAction
             ]);
         }
 
+        return $this->renderer->render('@blog/show', [
+            'post' => $post
+        ]);
+    }
+
+    /**
+     * Show blog post
+     * 
+     * @ParameterConverter("category", options={"id"="category_id"})
+     * @ParameterConverter("post", options={"id"="id"})
+     *
+     * @param \App\Blog\Models\Categories $category
+     * @param \App\Blog\Models\Posts $post
+     * @return mixed
+     */
+    public function postShow(Categories $category, Posts $post)
+    {
+        return $this->renderer->render('@blog/show', [
+            'post' => $post
+        ]);
+    }
+
+    /**
+     * Show blog post
+     * 
+     * @ParameterConverter("category", options={"slug"="slug"})
+     *
+     * @param \App\Blog\Models\Categories $category
+     * @param \App\Blog\Models\Posts $post
+     * @return mixed
+     */
+    public function postCategoryShow(Categories $category, Posts $post)
+    {
         return $this->renderer->render('@blog/show', [
             'post' => $post
         ]);

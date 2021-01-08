@@ -67,6 +67,12 @@
 								<a href="{{ path('blog.show', {slug: post.slug, id: post.id}) }}" class="btn btn-primary">
 									Voir l'article
 								</a>
+								<a href="{{ path('blog.postShow', {category_id: post.category.id, id: post.id}) }}" class="btn btn-primary">
+									Voir l'article
+								</a>
+								<a href="{{ path('blog.postCategoryShow', {slug: post.category.slug, id: post.id}) }}" class="btn btn-primary">
+									Voir l'article
+								</a>
 							</div>
 						</div>
 					{% endfor %}

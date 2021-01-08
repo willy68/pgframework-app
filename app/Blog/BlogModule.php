@@ -44,6 +44,8 @@ class BlogModule extends Module
         }
         $router->get($prefix, PostIndexAction::class, 'blog.index');
         $router->get($prefix . '/{slug:[a-z\-0-9]+}-{id:[0-9]+}', PostShowAction::class, 'blog.show');
+        $router->get($prefix . '/category/{category_id:[0-9]+}/post/{id:[0-9]+}', PostShowAction::class . '::postShow', 'blog.postShow');
+        $router->get($prefix . '/category/{slug:[a-z\-0-9]+}/post/{id:[0-9]+}', PostShowAction::class . '::postCategoryShow', 'blog.postCategoryShow');
         $router->get($prefix . '/category/{slug:[a-z\-0-9]+}', CategoryShowAction::class, 'blog.category');
     }
 }
