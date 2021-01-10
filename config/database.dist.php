@@ -1,13 +1,14 @@
 <?php
 
 use Psr\Container\ContainerInterface;
+use Framework\Environnement\Environnement;
 
 return [
-    'database.sgdb' => 'mysql',
-    'database.host' => 'localhost',
-    'database.user' => 'root',
-    'database.password' => 'root',
-    'database.name' => 'my_database',
+    'database.sgdb' => Environnement::getEnv('DATABASE_SGDB', 'mysql'),
+    'database.host' => Environnement::getEnv('DATABASE_HOST', 'localhost'),
+    'database.user' => Environnement::getEnv('DATABASE_USER', 'root'),
+    'database.password' => Environnement::getEnv('DATABASE_PASSWORD', 'root'),
+    'database.name' => Environnement::getEnv('DATABASE_NAME', 'my_database'),
     'database.models.dir' => dirname(__DIR__) . '/app/Models',
     'ActiveRecord.connections' => function (ContainerInterface $c): array {
         return [

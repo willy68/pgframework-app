@@ -42,6 +42,7 @@ Thumbs.db
 #
 bin/*
 !bin/.gitkeep
+.env.local
 /config/database.php
 database.php
 *~
