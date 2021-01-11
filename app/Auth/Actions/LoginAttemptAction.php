@@ -8,6 +8,7 @@ use Framework\Session\FlashService;
 use Framework\Session\SessionInterface;
 use Framework\Actions\RouterAwareAction;
 use Framework\Auth\RememberMe\RememberMeInterface;
+use Framework\Environnement\Environnement;
 use Framework\Response\ResponseRedirect;
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -74,7 +75,12 @@ class LoginAttemptAction
             $this->session->delete('auth.redirect');
             $response = new ResponseRedirect($path);
             if ($params['rememberMe']) {
-                $response = $this->cookie->onLogin($response, $user->getUsername(), $user->getPassword(), 'secret');
+                $response = $this->cookie->onLogin(
+                    $response,
+                    $user->getUsername(),
+                    $user->getPassword(),
+                    Environnement::getEnv('APP_KEY')
+                );
             }
             return $response;
         } else {
