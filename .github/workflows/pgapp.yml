@@ -1,4 +1,4 @@
-name: Laravel
+name: pgframework-app
 
 on:
   push:
