@@ -43,9 +43,9 @@ class UserToken extends Model implements TokenInterface
     /**
      * get the expiration date
      *
-     * @return int
+     * @return \DateTime
      */
-    public function getExpirationDate(): int
+    public function getExpirationDate(): \DateTime
     {
         return $this->expiration_date;
     }
