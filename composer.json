@@ -1,6 +1,7 @@
 {
     "name": "willy68/pgframework-app",
     "description": "Application skelto for pgframework",
+    "type": "project",
     "authors": [
         {
             "name": "William Lety",
@@ -44,5 +45,15 @@
     },
     "config": {
         "bin-dir": "bin"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.dist', '.env');\"",
+            "@php -r \"file_exists('.env.local') || copy('.env.local.dist', '.env.local');\"",
+            "@php -r \"file_exists('./config/database.php') || copy('./config/database.dist.php', './config/database.php');\""
+        ],
+        "post-create-project-cmd": [
+            "@php ./bin/generate key:generate"
+        ]
     }
 }
