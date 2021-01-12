@@ -42,7 +42,7 @@ class UserTokenRepository implements TokenRepositoryInterface
      */
     public function saveToken(array $token): ?TokenInterface
     {
-        if (!empty($token)) {
+        if (empty($token)) {
             return null;
         }
         /** @var UserToken */
@@ -72,6 +72,12 @@ class UserTokenRepository implements TokenRepositoryInterface
             return null;
         }
         return $userToken;
+    }
+
+    public function deleteToken(int $id)
+    {
+        $model = $this->model::find($id);
+        $model->delete();
     }
 
     /**
