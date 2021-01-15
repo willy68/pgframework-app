@@ -77,9 +77,7 @@ class LoginAttemptAction
             if ($params['rememberMe']) {
                 $response = $this->cookie->onLogin(
                     $response,
-                    $user->getUsername(),
-                    $user->getPassword(),
-                    Environnement::getEnv('APP_KEY')
+                    $user
                 );
             }
             return $response;

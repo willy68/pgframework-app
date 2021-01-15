@@ -17,6 +17,7 @@ use Framework\Auth\RememberMe\RememberMeInterface;
 use Framework\Auth\Repository\TokenRepositoryInterface;
 use Framework\Auth\Service\UtilToken;
 use Framework\Auth\Service\UtilTokenInterface;
+use Framework\Environnement\Environnement;
 
 use function DI\{
     add,
@@ -34,6 +35,8 @@ return [
         return $auth->getUser();
     })->parameter('auth', get(Auth::class)),
     RememberMeInterface::class => \DI\get(RememberMeDatabase::class),
+    RememberMeDatabase::class =>
+    \DI\autowire()->constructorParameter('salt', Environnement::getEnv('APP_KEY', 'abcdefghijklmnop123456789')),
     UtilTokenInterface::class => \DI\get(UtilToken::class),
     UserRepositoryInterface::class => \DI\get(ActiveRecordUserRepository::class),
     TokenRepositoryInterface::class => \DI\get(UserTokenRepository::class),

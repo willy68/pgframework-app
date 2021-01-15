@@ -23,6 +23,16 @@ class UserToken extends Model implements TokenInterface
 
     /**
      * get the unique user credential (ex. username or email)
+     *
+     * @return string
+     */
+    public function getSeries(): string
+    {
+        return $this->series;
+    }
+
+    /**
+     * get the unique user credential (ex. username or email)
      * 
      * @return string
      */

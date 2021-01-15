@@ -13,6 +13,29 @@ class UserTokenRepository implements TokenRepositoryInterface
      * @var UserToken
      */
     protected $model = UserToken::class;
+
+
+    /**
+     * get cookie token from database with ActiveRecord library
+     * 
+     * use user series to find token
+     *
+     * @param mixed $series
+     * @return TokenInterface|null
+     */
+    public function getTokenBySeries($series): ?TokenInterface
+    {
+        try {
+            $token = $this->model::find('last', ['conditions' => ["series = ?", $series]]);
+        } catch (\Exception $e) {
+            return null;
+        }
+        if ($token) {
+            return $token;
+        }
+        return null;
+    }
+
     /**
      * get cookie token from database with ActiveRecord library
      * 
@@ -21,11 +44,11 @@ class UserTokenRepository implements TokenRepositoryInterface
      * @param mixed $credential
      * @return TokenInterface|null
      */
-    public function getToken($credential): ?TokenInterface
+    public function getTokenByCredential($credential): ?TokenInterface
     {
         try {
             $token = $this->model::find('last', ['conditions' => ["credential = ?", $credential]]);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
         if ($token) {
@@ -45,6 +68,7 @@ class UserTokenRepository implements TokenRepositoryInterface
         if (empty($token)) {
             return null;
         }
+
         /** @var UserToken */
         $tokenModel = new $this->model();
         $tokenModel->create($this->getParams($token));
@@ -62,8 +86,7 @@ class UserTokenRepository implements TokenRepositoryInterface
     {
         try {
             $userToken = $this->model::find($id);
-        }
-        catch(\ActiveRecord\RecordNotFound $exception) {
+        } catch (\ActiveRecord\RecordNotFound $exception) {
             return null;
         }
         /** @var \ActiveRecord\Model $userToken*/
@@ -90,7 +113,7 @@ class UserTokenRepository implements TokenRepositoryInterface
     protected function getParams(array $params): array
     {
         $params = array_filter($params, function ($key) {
-            return in_array($key, ['credential', 'random_password', 'expiration_date', 'is_expired']);
+            return in_array($key, ['series', 'credential', 'random_password', 'expiration_date']);
         }, ARRAY_FILTER_USE_KEY);
         return $params;
     }

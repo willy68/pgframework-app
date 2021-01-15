@@ -46,6 +46,13 @@ class UserTokenMigration extends AbstractMigration
             'signed' => false,
             'identity' => 'enable',
         ])
+        ->addColumn('series', 'string', [
+            'null' => false,
+            'limit' => 255,
+            'collation' => 'utf8_general_ci',
+            'encoding' => 'utf8',
+            'after' => 'id',
+        ])
         ->addColumn('credential', 'string', [
             'null' => false,
             'limit' => 255,
@@ -65,13 +72,7 @@ class UserTokenMigration extends AbstractMigration
             'default' => 'CURRENT_TIMESTAMP',
             'after' => 'random_password'
         ])
-        ->addColumn('is_expired', 'integer', [
-            'null' => false,
-            'default' => '0',
-            'limit' => '10',
-            'after' => 'expiration_date'
-        ])
-        ->addIndex('credential', ['unique' => true])
+        ->addIndex('series', ['unique' => true])
         ->create();
 
     }
