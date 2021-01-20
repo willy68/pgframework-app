@@ -51,3 +51,4 @@ database.php
 /generated_controllers
 routes.xml
 tmp
+/.vs/slnx.sqlite
